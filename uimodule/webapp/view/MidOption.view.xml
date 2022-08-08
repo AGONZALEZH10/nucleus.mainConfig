@@ -1,0 +1,23 @@
+<mvc:View controllerName="nucleus.mainConfig.controller.MidOption"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m" displayBlock="true" height="100%" busyIndicatorDelay="0">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Panel backgroundDesign="Transparent" headerText="Define Plant">
+                <content>
+                    <HBox width="100%" justifyContent="Center">
+                        <VBox width="50%">
+                            <Button text="Single Entry Upload" press="onPressSingle" type="Default" width="100%" class="sapUiMediumMarginBottom"/>
+                            <HBox justifyContent="SpaceBetween" class="sapUiMediumMarginBottom">
+                                <Button text="Mass Data Upload via Excel" press="onPressMass" type="Default" width="100%"/>
+                                <Button text="Download Excel Template" press="onPressDownloadTemplate" type="Default" width="100%"/>
+                            </HBox>
+                            <Button text="Download Existing Plant Data" press="onPressDownloadPlant" type="Default" width="100%" class="sapUiMediumMarginBottom"/>
+                        </VBox>
+                    </HBox>
+                </content>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

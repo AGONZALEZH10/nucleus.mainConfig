@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZNU_CONFIG_SRV" xml:lang="en" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="calendar" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Ident"/>
+                </Key>
+                <Property Name="Ident" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Factory Cal. ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ltext" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="language" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Spras"/>
+                </Key>
+                <Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Language" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sptxt" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="region" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Land1"/>
+                </Key>
+                <Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Country/Reg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bland" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bezei" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="country" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Land1"/>
+                </Key>
+                <Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Country/Reg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Landx" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Natio" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="title" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Title"/>
+                </Key>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TitleMedi" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plant" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sort2" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Search Term 2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sort1" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Search Term 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PostCode1" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Postal Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name2" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name 2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nation" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Address Version" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="street" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="McStreet"/>
+                </Key>
+                <Property Name="CityName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="McStreet" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="McCity" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CityExt" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="City extension" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Country/Reg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Langu" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Language" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StrtCode" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Street Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Streetf" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Streetf" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CityCode" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="City Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantOwn" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="strkorr"/>
+                </Key>
+                <Property Name="strkorr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="as4text" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="message" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="messType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantValPlant" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="werks"/>
+                </Key>
+                <Property Name="werks" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="message" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="messType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantAction" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="action"/>
+                </Key>
+                <Property Name="action" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toReturn" Relationship="ZNU_CONFIG_SRV.PlantToReturn" FromRole="FromRole_PlantToReturn" ToRole="ToRole_PlantToReturn"/>
+                <NavigationProperty Name="toMain" Relationship="ZNU_CONFIG_SRV.PlantToMain" FromRole="FromRole_PlantToMain" ToRole="ToRole_PlantToMain"/>
+                <NavigationProperty Name="toError" Relationship="ZNU_CONFIG_SRV.PlantToError" FromRole="FromRole_PlantToError" ToRole="ToRole_PlantToError"/>
+                <NavigationProperty Name="toOutput" Relationship="ZNU_CONFIG_SRV.PlantToOutput" FromRole="FromRole_PlantToOutput" ToRole="ToRole_PlantToOutput"/>
+                <NavigationProperty Name="toRange" Relationship="ZNU_CONFIG_SRV.PlantToRange" FromRole="FromRole_PlantToRange" ToRole="ToRole_PlantToRange"/>
+                <NavigationProperty Name="toXLSX" Relationship="ZNU_CONFIG_SRV.PlantToXLSX" FromRole="FromRole_PlantToXLSX" ToRole="ToRole_PlantToXLSX"/>
+            </EntityType>
+            <EntityType Name="plantReturn" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="message"/>
+                </Key>
+                <Property Name="message" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="messType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantMain" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="werks"/>
+                </Key>
+                <Property Name="werks" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="name1" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="name2" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="title" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="street1" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="street2" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="city" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="country" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="region" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="code" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="lang" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="fabkl" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="r1" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="des" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="r2" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="own" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="street" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="hno" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantOutput" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Undefined range (can be used for patch levels)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="MSG" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantError" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Undefined range (can be used for patch levels)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="MSG" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantRange" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Sign"/>
+                </Key>
+                <Property Name="Sign" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Type of SIGN component in row type of a Ranges type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Option" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Type of OPTION component in row type of a Ranges type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Low" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="High" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="plantXLSX" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PLANT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="NAME1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name2" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="NAME2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="TITLE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Street" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="STREET" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Hno" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="HNO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Street2" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="STREET2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CITY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Region" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="REGION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Postalcode" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="POSTALCODE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="COUNTRY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="LANGUAGE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Factorycalender" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="FACTORYCALENDER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="PlantToMain" sap:content-version="1">
+                <End Type="ZNU_CONFIG_SRV.plantAction" Multiplicity="*" Role="FromRole_PlantToMain"/>
+                <End Type="ZNU_CONFIG_SRV.plantMain" Multiplicity="*" Role="ToRole_PlantToMain"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PlantToMain">
+                        <PropertyRef Name="action"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PlantToMain">
+                        <PropertyRef Name="werks"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PlantToError" sap:content-version="1">
+                <End Type="ZNU_CONFIG_SRV.plantAction" Multiplicity="*" Role="FromRole_PlantToError"/>
+                <End Type="ZNU_CONFIG_SRV.plantError" Multiplicity="*" Role="ToRole_PlantToError"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PlantToError">
+                        <PropertyRef Name="action"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PlantToError">
+                        <PropertyRef Name="Status"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PlantToOutput" sap:content-version="1">
+                <End Type="ZNU_CONFIG_SRV.plantAction" Multiplicity="*" Role="FromRole_PlantToOutput"/>
+                <End Type="ZNU_CONFIG_SRV.plantOutput" Multiplicity="*" Role="ToRole_PlantToOutput"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PlantToOutput">
+                        <PropertyRef Name="action"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PlantToOutput">
+                        <PropertyRef Name="Plant"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PlantToRange" sap:content-version="1">
+                <End Type="ZNU_CONFIG_SRV.plantAction" Multiplicity="*" Role="FromRole_PlantToRange"/>
+                <End Type="ZNU_CONFIG_SRV.plantRange" Multiplicity="*" Role="ToRole_PlantToRange"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PlantToRange">
+                        <PropertyRef Name="action"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PlantToRange">
+                        <PropertyRef Name="High"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PlantToXLSX" sap:content-version="1">
+                <End Type="ZNU_CONFIG_SRV.plantAction" Multiplicity="*" Role="FromRole_PlantToXLSX"/>
+                <End Type="ZNU_CONFIG_SRV.plantXLSX" Multiplicity="*" Role="ToRole_PlantToXLSX"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PlantToXLSX">
+                        <PropertyRef Name="action"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PlantToXLSX">
+                        <PropertyRef Name="Plant"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PlantToReturn" sap:content-version="1">
+                <End Type="ZNU_CONFIG_SRV.plantAction" Multiplicity="*" Role="FromRole_PlantToReturn"/>
+                <End Type="ZNU_CONFIG_SRV.plantReturn" Multiplicity="*" Role="ToRole_PlantToReturn"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PlantToReturn">
+                        <PropertyRef Name="action"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PlantToReturn">
+                        <PropertyRef Name="message"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZNU_CONFIG_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="calendarSet" EntityType="ZNU_CONFIG_SRV.calendar" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="languageSet" EntityType="ZNU_CONFIG_SRV.language" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="regionSet" EntityType="ZNU_CONFIG_SRV.region" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="countrySet" EntityType="ZNU_CONFIG_SRV.country" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="titleSet" EntityType="ZNU_CONFIG_SRV.title" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="plantSet" EntityType="ZNU_CONFIG_SRV.plant" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="streetSet" EntityType="ZNU_CONFIG_SRV.street" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="plantOwnSet" EntityType="ZNU_CONFIG_SRV.plantOwn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="plantValPlantSet" EntityType="ZNU_CONFIG_SRV.plantValPlant" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="plantActionSet" EntityType="ZNU_CONFIG_SRV.plantAction" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="plantReturnSet" EntityType="ZNU_CONFIG_SRV.plantReturn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="plantMainSet" EntityType="ZNU_CONFIG_SRV.plantMain" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="plantOutputSet" EntityType="ZNU_CONFIG_SRV.plantOutput" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="plantErrorSet" EntityType="ZNU_CONFIG_SRV.plantError" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="plantRangeSet" EntityType="ZNU_CONFIG_SRV.plantRange" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="plantXLSXSet" EntityType="ZNU_CONFIG_SRV.plantXLSX" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="PlantToXLSXSet" Association="ZNU_CONFIG_SRV.PlantToXLSX" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="plantActionSet" Role="FromRole_PlantToXLSX"/>
+                    <End EntitySet="plantXLSXSet" Role="ToRole_PlantToXLSX"/>
+                </AssociationSet>
+                <AssociationSet Name="PlantToMainSet" Association="ZNU_CONFIG_SRV.PlantToMain" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="plantActionSet" Role="FromRole_PlantToMain"/>
+                    <End EntitySet="plantMainSet" Role="ToRole_PlantToMain"/>
+                </AssociationSet>
+                <AssociationSet Name="PlantToErrorSet" Association="ZNU_CONFIG_SRV.PlantToError" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="plantActionSet" Role="FromRole_PlantToError"/>
+                    <End EntitySet="plantErrorSet" Role="ToRole_PlantToError"/>
+                </AssociationSet>
+                <AssociationSet Name="PlantToOutputSet" Association="ZNU_CONFIG_SRV.PlantToOutput" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="plantActionSet" Role="FromRole_PlantToOutput"/>
+                    <End EntitySet="plantOutputSet" Role="ToRole_PlantToOutput"/>
+                </AssociationSet>
+                <AssociationSet Name="PlantToReturnSet" Association="ZNU_CONFIG_SRV.PlantToReturn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="plantActionSet" Role="FromRole_PlantToReturn"/>
+                    <End EntitySet="plantReturnSet" Role="ToRole_PlantToReturn"/>
+                </AssociationSet>
+                <AssociationSet Name="PlantToRangeSet" Association="ZNU_CONFIG_SRV.PlantToRange" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="plantActionSet" Role="FromRole_PlantToRange"/>
+                    <End EntitySet="plantRangeSet" Role="ToRole_PlantToRange"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://sptcvmdhana11.sapdemo.lab:8001/sap/opu/odata/sap/ZNU_CONFIG_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sptcvmdhana11.sapdemo.lab:8001/sap/opu/odata/sap/ZNU_CONFIG_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

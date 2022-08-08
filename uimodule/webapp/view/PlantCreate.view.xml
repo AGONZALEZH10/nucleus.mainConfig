@@ -1,0 +1,121 @@
+<mvc:View controllerName="nucleus.mainConfig.controller.PlantCreate"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" displayBlock="true" height="100%" busyIndicatorDelay="0">
+	<Page backgroundDesign="Standard" contentOnlyBusy="false" enableScrolling="true" floatingFooter="false" navButtonTooltip="" showFooter="true" showHeader="true" showNavButton="false" showSubHeader="true" title="NUCLEUS" titleLevel="Auto">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="Create" type="Accept" press="onCreate"/>
+			</OverflowToolbar>
+		</footer>
+		<content>
+			<HBox visible="{viewModel>/grupo1/vis}">
+				<VBox width="97%">
+					<Panel headerText="Nucleus Plant Creation" width="auto" class="sapUiResponsiveMargin">
+						<content>
+							<form:Form editable="true" id="__formDatGen">
+								<form:layout>
+									<form:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+								</form:layout>
+								<form:formContainers>
+									<form:FormContainer >
+										<form:formElements>
+											<form:FormElement label="Plant Code">
+												<form:fields>
+													<Input id="in1" width="100%" value="{datosGral>/in1}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in1')" submit="onPlantChange"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Plant Name1">
+												<form:fields>
+													<Input id="in2" width="100%" value="{datosGral>/in2}" required="true"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Plant Name2">
+												<form:fields>
+													<Input id="in3" width="100%" value="{datosGral>/in3}" required="true"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Title">
+												<form:fields>
+													<Input id="in4" width="100%" value="{datosGral>/in4}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in4')"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Street/House number">
+												<form:fields>
+													<Input id="in5" width="100%" value="{datosGral>/in5}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in5')"/>
+													<Input id="in6" width="100%" value="{datosGral>/in6}">
+														<layoutData>
+															<layout:GridData span="XL2 L2 M2 S4" />
+														</layoutData>
+													</Input>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Plant Street2">
+												<form:fields>
+													<Input id="in7" width="100%" value="{datosGral>/in7}"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="City">
+												<form:fields>
+													<Input id="in8" width="100%" value="{datosGral>/in8}" required="true"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Country">
+												<form:fields>
+													<Input id="in9" width="100%" value="{datosGral>/in9}" editable="false"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Region">
+												<form:fields>
+													<Input id="in10" width="100%" value="{datosGral>/in10}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in10')"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Postal Code">
+												<form:fields>
+													<Input id="in11" width="100%" value="{datosGral>/in11}" required="true"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Language">
+												<form:fields>
+													<Input id="in12" width="100%" value="{datosGral>/in12}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in12')"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="Factory">
+												<form:fields>
+													<Input id="in13" width="100%" value="{datosGral>/in13}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in13')"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="">
+												<form:fields>
+													<RadioButtonGroup >
+														<RadioButton activeHandling="true" editable="true" enabled="true" groupName="requestType" selected="{datosGral>/in14}" text="New TR Description" textAlign="Begin" textDirection="Inherit" useEntireWidth="false" valueState="None">
+														</RadioButton>
+														<RadioButton activeHandling="true" editable="true" enabled="true" groupName="requestType" selected="{datosGral>/in15}" text="Own Request" textAlign="Begin" textDirection="Inherit" useEntireWidth="false" valueState="None">
+														</RadioButton>
+													</RadioButtonGroup>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="" visible="{datosGral>/in14}">
+												<form:fields>
+													<Input id="in16" width="100%" value="{datosGral>/in16}" />
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="" visible="{datosGral>/in15}">
+												<form:fields>
+													<Input id="in17" width="100%" value="{datosGral>/in17}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in17')" />
+												</form:fields>
+											</form:FormElement>
+										</form:formElements>
+									</form:FormContainer>
+								</form:formContainers>
+							</form:Form>
+						</content>
+					</Panel>
+				</VBox>
+				<!-- <Button icon="sap-icon://reset" type="Transparent" press="onResetPanel($event, 'G1')" enabled="{= !${afterCreation>/followUp}}" visible="{= !${afterCreation>/followUp}}"/> -->
+			</HBox>
+		</content>
+	</Page>
+</mvc:View>

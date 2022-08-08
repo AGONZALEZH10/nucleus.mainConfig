@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<TableSelectDialog id="TableSelectId" growingThreshold="20" noDataText="No Value Found" title="Select Value" search="handleSearch"
+		confirm="handleValueItemPress" cancel="handleClose">
+		<ColumnListItem id="valueHelpTemplate">
+			<cells>
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column id="col1" width="12em">
+				<header>
+					<Text id="valueHelpField1" text=""/>
+				</header>
+			</Column>
+			<Column id="col2" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField2" text=""/>
+				</header>
+			</Column>
+			<Column id="col3" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField3" text=""/>
+				</header>
+			</Column>
+			<Column id="col4" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField4" text=""/>
+				</header>
+			</Column>
+			<Column id="col5" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField5" text=""/>
+				</header>
+			</Column>
+			<Column id="col6" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField6" text=""/>
+				</header>
+			</Column>
+			<Column id="col7" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField7" text=""/>
+				</header>
+			</Column>
+			<Column id="col8" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField8" text=""/>
+				</header>
+			</Column>	
+			<Column id="col9" minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text id="valueHelpField9" text=""/>
+				</header>
+			</Column>																				
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

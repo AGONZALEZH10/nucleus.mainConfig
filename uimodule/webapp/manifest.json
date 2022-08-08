@@ -13,6 +13,16 @@
     "sourceTemplate": {
       "id": "@sap-ux/fiori-freestyle-writer:basic",
       "version": "0.12.1"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZNU_CONFIG_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/ZNU_CONFIG_SRV.xml"
+        }
+      }
     }
   },
   "sap.ui": {
@@ -50,14 +60,16 @@
         "settings": {
           "bundleName": "nucleus.mainConfig.i18n.i18n"
         }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true
       }
     },
     "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
+      "css": [{
+        "uri": "css/style.css"
+      }]
     },
     "routing": {
       "config": {
@@ -69,12 +81,25 @@
         "controlId": "app",
         "clearControlAggregation": false
       },
-      "routes": [
-        {
+      "routes": [{
           "name": "RouteMainView",
           "pattern": ":?query:",
           "target": [
             "TargetMainView"
+          ]
+        },
+        {
+          "name": "midOptionView",
+          "pattern": "midOption",
+          "target": [
+            "MidOptionView"
+          ]
+        },
+        {
+          "name": "plantCreateView",
+          "pattern": "plantCreate",
+          "target": [
+            "PlantCreateView"
           ]
         }
       ],
@@ -85,6 +110,20 @@
           "clearControlAggregation": false,
           "viewId": "MainView",
           "viewName": "MainView"
+        },
+        "MidOptionView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "MidOptionView",
+          "viewName": "MidOption"
+        },
+        "PlantCreateView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "plantCreateView",
+          "viewName": "PlantCreate"
         }
       }
     },

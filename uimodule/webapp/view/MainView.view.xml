@@ -1,5 +1,61 @@
-<mvc:View controllerName="nucleus.mainConfig.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="nucleus.mainConfig.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+            <Panel backgroundDesign="Transparent" visible="true">
+                <content>
+                    <HBox width="100%" justifyContent="Center">
+                        <VBox width="50%">
+                            <HBox >
+                                <Button type="Back" press="onPressBack" class="sapUiTinyMarginEnd"/>
+                                <Button icon="sap-icon://home" press="onPressHome" class="sapUiTinyMarginEnd"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+                </content>
+            </Panel>
+            <Panel backgroundDesign="Transparent" visible="{mainButt>/l1}" headerText="List of Modules">
+                <content>
+                    <HBox width="100%" justifyContent="Center">
+                        <VBox width="50%">
+                            <Button text="MATERIAL MANAGEMENT" press="onPressMainButton($event, 'l1', 'o1')" type="Default" width="100%"/>
+                            <Button text="SALES AND DISTRIBUTION" press="onPressMainButton($event, 'l1', 'o2')" type="Default" width="100%"/>
+                            <Button text="FINANCE AND COSTING" press="onPressMainButton($event, 'l1', 'o3')" type="Default" width="100%"/>
+                            <Button text="PRODUCTION PLANNING" press="onPressMainButton($event, 'l1', 'o4')" type="Default" width="100%"/>
+                            <Button text="LOGISTIC EXECUTION" press="onPressMainButton($event, 'l1', 'o5')" type="Default" width="100%"/>
+                            <Button text="WAREHOUSE MANAGEMENT" press="onPressMainButton($event, 'l1', 'o6')" type="Default" width="100%"/>
+                        </VBox>
+                    </HBox>
+                </content>
+            </Panel>
+            <Panel backgroundDesign="Transparent" visible="{mainButt>/l2}" headerText="Configuration Objects">
+                <content>
+                    <HBox width="100%" justifyContent="Center">
+                        <VBox width="50%">
+                            <Button text="ORGANIZATION STRUCTURE" press="onPressMainButton($event, 'l2', 'o1')" type="Default" width="100%"/>
+                            <Button text="PURCHASING" press="onPressMainButton($event, 'l2', 'o2')" type="Default" width="100%"/>
+                            <Button text="MASTER DATA" press="onPressMainButton($event, 'l2', 'o3')" type="Default" width="100%"/>
+                            <Button text="External SERVICE MANAGEMENT" press="onPressMainButton($event, 'l2', 'o4')" type="Default" width="100%"/>
+                            <Button text="INVENTORY MANAGEMENT" press="onPressMainButton($event, 'l2', 'o5')" type="Default" width="100%"/>
+                            <Button text="INVOICING" press="onPressMainButton($event, 'l2', 'o6')" type="Default" width="100%"/>
+                        </VBox>
+                    </HBox>
+                </content>
+            </Panel>
+            <Panel backgroundDesign="Transparent" visible="{mainButt>/l3}" headerText="Organization Definition Objects">
+                <content>
+                    <HBox width="100%" justifyContent="Center">
+                        <VBox width="50%">
+                            <Button text="DEFINE PLANT" press="onPressMainButton($event, 'l3', 'o1')" type="Default" width="100%"/>
+                            <Button text="DEFINE STORAGE LOCATION" press="onPressMainButton($event, 'l3', 'o2')" type="Default" width="100%"/>
+                            <Button text="ASSIGN PLANT TO A COMPANY" press="onPressMainButton($event, 'l3', 'o3')" type="Default" width="100%"/>
+                            <Button text="DEFINE PURCHASE ORGANIZATION" press="onPressMainButton($event, 'l3', 'o4')" type="Default" width="100%"/>
+                            <Button text="PURCHASE ORGANIZATION ASSINGMENT" press="onPressMainButton($event, 'l3', 'o5')" type="Default" width="100%"/>
+                        </VBox>
+                    </HBox>
+                </content>
+            </Panel>            
+        </content>
     </Page>
 </mvc:View>
