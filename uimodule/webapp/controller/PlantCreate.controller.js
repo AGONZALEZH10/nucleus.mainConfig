@@ -342,12 +342,11 @@ sap.ui.define([
     },
     valPlant: function (plant) {
       // ('" + plant + "')
-      var url = "/plantValPlantSet";
+      var url = "/plantValPlantSet('" + plant + "')";
       var that = this;
       return new Promise(function (resolve, reject) {
         that.getModel().read(url, {
           success: function (oData) {
-            oData.message = "";
             if (oData.message) {
               resolve(MessageBox.error(oData.message));
             }
@@ -358,7 +357,7 @@ sap.ui.define([
     },
     valAllFields: function () {
       var datosGral = this.datosGral.getData();
-      var valFields = ["in1", "in4", "in5", "in10", "in12", "in13"];
+      var valFields = ["in1", "in2", "in3", "in8", "in10", "in11", "in12", "in13"];
       valFields.forEach((field) => {
         if (!datosGral[field]) {
           this.byId(field).setValueState(sap.ui.core.ValueState.Error);
@@ -366,15 +365,17 @@ sap.ui.define([
           this.byId(field).setValueState(sap.ui.core.ValueState.None);
         }
       });
-      return datosGral.in1 && datosGral.in4 && datosGral.in5 && datosGral.in10 && datosGral.in12 && datosGral.in13;
+      var res = datosGral.in1 && datosGral.in4 && datosGral.in5 && datosGral.in10 && datosGral.in12 && datosGral.in13;
+      if (!res) {
+        MessageBox.error("Please fill all fields with valid inputs");
+      }
+      return res;
     },
     onCreate: function (oEvent) {
       var datosGral = this.datosGral.getData();
       this.valPlant(datosGral.in1).then(function (result) {
         if (result && this.valAllFields()) {
           this.sendToBackForCreate();
-        } else {
-          MessageBox.error("Please fill all fields with valid inputs");
         }
       }.bind(this));
     },
@@ -384,7 +385,7 @@ sap.ui.define([
       var that = this;
       var oPayload = {
         action: "CREATE",
-        toMain: {
+        toMain: [{
           werks: datosGral.in1,
           name1: datosGral.in2,
           name2: datosGral.in3,
@@ -398,17 +399,18 @@ sap.ui.define([
           code: datosGral.in11,
           lang: datosGral.in12,
           fabkl: datosGral.in13,
-          r1: datosGral.in14,
+          r1: datosGral.in14 ? "X" : "",
           des: datosGral.in16,
-          r2: datosGral.in15,
+          r2: datosGral.in15 ? "X" : "",
           own: datosGral.in17,
-        },
+        }],
+        toReturn: []
       };
       return new Promise(function (resolve, reject) {
         that.getModel().create(url, oPayload, {
           success: function (res) {
-            if (res.data.toReturn.results) {
-              resolve(that.displayResults(res.data.toReturn.results));
+            if (res.toReturn.results) {
+              resolve(that.displayResults(res.toReturn.results));
             }
             resolve(true);
           }
