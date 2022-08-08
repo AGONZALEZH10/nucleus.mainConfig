@@ -51,7 +51,7 @@ sap.ui.define([
           // configure mock server with the given options or a default delay of 0.5s
           MockServer.config({
             autoRespond: true,
-            autoRespondAfter: (oOptions.delay || oUriParameters.get("serverDelay") || 500)
+            autoRespondAfter: (oOptions.delay || oUriParameters.get("serverDelay") || 0)
           });
 
           // simulate all requests using mock data
@@ -103,94 +103,52 @@ sap.ui.define([
           }, "calendarSet");
           oMockServer.attachBefore(sap.ui.core.util.MockServer.HTTPMETHOD.GET, function (oCall) {
             console.log("mockcall2");
-          }, "plantValPlantSet");  
+          }, "plantValPlantSet");
           oMockServer.attachAfter(sap.ui.core.util.MockServer.HTTPMETHOD.GET, function (oCall, param) {
             oCall.mParameters.oFilteredData = "xxx";
-          }, "plantValPlantSet");          
+          }, "plantValPlantSet");
           oMockServer.attachAfter(sap.ui.core.util.MockServer.HTTPMETHOD.POST, function (oCall) {
-            switch (oCall.mParameters.oEntity.EmployeeID) {
-              case 1:
-                var sections = [{
-                  "SeccionID": 1,
-                  "Largo": "INEEEEE",
-                  "SecPorcentaje": 25,
-                  // "MaxFile": 4,
-                  // "CurrFile": 2,
-                  "Seccion_Details": [{
-                    "SeccionID": 1,
-                    "Documento": 123,
-                    "Estatus": "Activo",
-                    "ModDate": "2021-10-30",
-                    "Nombre": "INE frente"
-                  }, {
-                    "SeccionID": 1,
-                    "Documento": 124,
-                    "Estatus": "Activo",
-                    "ModDate": "2021-10-30",
-                    "Nombre": "INE reverso"
-                  }, {
-                    "SeccionID": 1,
-                    "Documento": 125,
-                    "Estatus": "Activo",
-                    "ModDate": "2021-10-30",
-                    "Nombre": "INE reversox"
-                  }, {
-                    "SeccionID": 1,
-                    "Documento": 126,
-                    "Estatus": "Activo",
-                    "ModDate": "2021-10-30",
-                    "Nombre": "INE reversoxxxx"
-                  }, {
-                    "SeccionID": 1,
-                    "Documento": 127,
-                    "Estatus": "Activo",
-                    "ModDate": "2021-10-30",
-                    "Nombre": "INE reversoxyyy"
+            switch (oCall.mParameters.oEntity.action) {
+              case 'TEMPLATE':
+                var toXLSX = {
+                  results: [{
+                    Plant: "Plantxxx",
+                    Name1: "Name1xxx",
+                    Name2: "Name2xxx",
+                    Title: "Titlexxx",
+                    Street: "Streetxxx",
+                    Hno: "Hnoxxx",
+                    Street2: "Street2xxx",
+                    City: "Cityxxx",
+                    Region: "Regionxxx",
+                    Postalcode: "Postalcodexxx",
+                    Country: "Countryxxx",
+                    Language: "Languagexxx",
+                    Factorycalender: "Factorycalenderxxx"
                   }]
-                }, {
-                  "SeccionID": 2,
-                  "SecPorcentaje": 50,
-                  // "MaxFile": 2,
-                  // "CurrFile": 2,
-                  "Largo": "RFCCCCC",
-                  "Seccion_Details": [{
-                    "SeccionID": 1,
-                    "Documento": 333,
-                    "Estatus": "Activo",
-                    "ModDate": "2021-10-30",
-                    "Nombre": "INE frente"
-                  }]
-                }, {
-                  "SeccionID": 3,
-                  "SecPorcentaje": 75,
-                  // "MaxFile": 3,
-                  // "CurrFile": 1,
-                  "Largo": "RFCCCCCXX"
-                }, {
-                  "SeccionID": 4,
-                  "SecPorcentaje": 100,
-                  // "MaxFile": 3,
-                  // "CurrFile": 1,
-                  "Largo": "RFCCCCCXXyy"
-                }];
+                };
+                oCall.mParameters.oEntity.toXLSX = toXLSX;
                 break;
-              case 3:
-                // sections = [{
-                //     "SeccionID": 3,
-                //     "SecPorcentaje" : 100,
-                //     "Largo": "ActaAAA"
-                // }, {
-                //     "SeccionID": 4,
-                //     "SecPorcentaje" : 0,
-                //     "Largo": "Licencia"
-                // }];
+              case 'CREATE':
+                var toReturn = {
+                  results: [{
+                    message: "S&&chindo one"
+                  },
+                  // {
+                  //   message: "pura madre1"
+                  // },
+                  // {
+                  //   message: "pura madre2"
+                  // }
+                ]
+                };
+                oCall.mParameters.oEntity.toReturn = toReturn;
                 break;
-
               default:
+                break;
             }
-            oCall.mParameters.oEntity.EmployeeToSeccion = sections;
             console.log("Sections");
-          }, "EmployeeSeccions");
+          }, "plantActionSet");
           fnResolve();
         });
 

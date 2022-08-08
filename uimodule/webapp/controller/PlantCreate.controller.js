@@ -16,13 +16,16 @@ sap.ui.define([
 
   return BaseController.extend("nucleus.mainConfig.controller.PlantCreate", {
     onInit: function () {
+      this.initView();      
+      this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+      this.oRouter.getRoute("plantCreateView").attachPatternMatched(this.onPageLoaded, this);
+    },
+    initView: function () {
       this.setModel(new JSONModel({
         in14: true,
         in15: false,
       }), "datosGral");
       this.datosGral = this.getModel("datosGral");
-      var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-      oRouter.getRoute("plantCreateView").attachPatternMatched(this.onPageLoaded, this);
     },
     onPageLoaded: function (oEvent) {},
     onValueHelp: function (oEvent, param) {
@@ -340,13 +343,14 @@ sap.ui.define([
       var plant = oEvent.getSource().getValue();
       this.valPlant(plant);
     },
-    valPlant: function (plant) {
-      // ('" + plant + "')
+    valPlant: function (plant) {      
       var url = "/plantValPlantSet('" + plant + "')";
+      // var url = "/plantValPlantSet";
       var that = this;
       return new Promise(function (resolve, reject) {
         that.getModel().read(url, {
           success: function (oData) {
+            // oData.message = ""
             if (oData.message) {
               resolve(MessageBox.error(oData.message));
             }
@@ -400,9 +404,9 @@ sap.ui.define([
           lang: datosGral.in12,
           fabkl: datosGral.in13,
           r1: datosGral.in14 ? "X" : "",
-          des: datosGral.in16,
+          des: datosGral.in14 ? datosGral.in16 : "",
           r2: datosGral.in15 ? "X" : "",
-          own: datosGral.in17,
+          own: datosGral.in15 ? datosGral.in17 : "",
         }],
         toReturn: []
       };
@@ -418,10 +422,24 @@ sap.ui.define([
       });
     },
     displayResults: function (arrResults) {
-      var oResults = arrResults.map((result) => {
-        return result.message;
-      }).join("\n");
-      MessageBox.show(oResults);
+      if (arrResults.length > 0) {
+        var okFlow = arrResults[0].message.split("&&");
+        if (okFlow.length > 1) {
+          MessageBox.success(okFlow[1]);
+          setTimeout(() => {
+            this.closeView();
+          }, 2000);
+        } else {
+          var oResults = arrResults.map((result) => {
+            return result.message;
+          }).join("\n");
+          MessageBox.error(oResults);
+        }
+      }
+    },
+    closeView: function () {
+      this.initView();
+      this.oRouter.navTo("midOptionView");
     }
   });
 });
