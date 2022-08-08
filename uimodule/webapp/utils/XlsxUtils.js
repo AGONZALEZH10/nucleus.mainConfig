@@ -90,13 +90,8 @@ sap.ui.define(
           reader.readAsArrayBuffer(inFile);
         })
       },
-      onDownloadAsExcel: function () {
-        var headers = this.xlsxHeaders;
-        var data = [{}];
-        for (let idx = 0; idx < headers.length; idx++) {
-          data[0][headers[idx]] = "dato" + (idx + 1);
-        }
-        const worksheet = XLSX.utils.json_to_sheet(data);
+      onDownloadAsExcel: function (data) {
+        const worksheet = XLSX.utils.json_to_sheet(data, {skipHeader: 1});
         const workbook = {
           Sheets: {
             data: worksheet,
@@ -108,7 +103,7 @@ sap.ui.define(
           type: "array",
         });
         console.log(excelBuffer);
-        this.onSaveAsExcel(excelBuffer, this.getOwnerComponent().flowData.actTxt + " " + this.getOwnerComponent().flowData.id);
+        this.onSaveAsExcel(excelBuffer, "Plant Data");
       },
     });
   }

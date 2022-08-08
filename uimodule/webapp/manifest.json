@@ -105,6 +105,20 @@
           "target": [
             "PlantCreateView"
           ]
+        },
+        {
+          "name": "plantDownloadView",
+          "pattern": "plantDownload",
+          "target": [
+            "PlantDownloadView"
+          ]
+        },
+        {
+          "name": "plantMassView",
+          "pattern": "plantMass",
+          "target": [
+            "PlantMassView"
+          ]
         }
       ],
       "targets": {
@@ -128,6 +142,20 @@
           "clearControlAggregation": false,
           "viewId": "plantCreateView",
           "viewName": "PlantCreate"
+        },
+        "PlantDownloadView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "plantDownloadView",
+          "viewName": "PlantDownload"
+        },
+        "PlantMassView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "plantMassView",
+          "viewName": "PlantMass"
         }
       }
     },

@@ -17,7 +17,7 @@ sap.ui.define([
       this.oRouter.navTo("plantCreateView");
     },
     onPressMass: function (oEvent) {
-      this.oRouter.navTo("plantCreateView");
+      this.oRouter.navTo("plantMassView");
     },
     onPressDownloadTemplate: function (oEvent) {
       //directly download the template file
@@ -29,7 +29,7 @@ sap.ui.define([
       });
     },
     onPressDownloadPlant: function (oEvent) {
-      this.oRouter.navTo("plantCreateView");
+      this.oRouter.navTo("plantDownloadView");
     },
     getTemplateHeaders: function () {
       var url = "/plantActionSet";

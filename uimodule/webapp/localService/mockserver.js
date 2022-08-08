@@ -144,6 +144,46 @@ sap.ui.define([
                 };
                 oCall.mParameters.oEntity.toReturn = toReturn;
                 break;
+                case 'DOWNLOAD':
+                  // var toReturn = {
+                  //   results: [{
+                  //     message: "S&&chindo one"
+                  //   },
+                  var toXLSX = {
+                    results: [{
+                      Plant: "Plantxxx",
+                      Name1: "Name1xxx",
+                      Name2: "Name2xxx",
+                      Title: "Titlexxx",
+                      Street: "Streetxxx",
+                      Hno: "Hnoxxx",
+                      Street2: "Street2xxx",
+                      City: "Cityxxx",
+                      Region: "Regionxxx",
+                      Postalcode: "Postalcodexxx",
+                      Country: "Countryxxx",
+                      Language: "Languagexxx",
+                      Factorycalender: "Factorycalenderxxx"
+                    },
+                    {
+                      Plant: "Plant VAL1",
+                      Name1: "Name1 VAL1",
+                      Name2: "Name2 VAL1",
+                      Title: "Title VAL1",
+                      Street: "Street VAL1",
+                      Hno: "Hno VAL1",
+                      Street2: "Street2 VAL1",
+                      City: "City VAL1",
+                      Region: "Region VAL1",
+                      Postalcode: "Postalcode VAL1",
+                      Country: "Country VAL1",
+                      Language: "Language VAL1",
+                      Factorycalender: "Factorycalender VAL1"
+                    }]
+                  };
+                  // oCall.mParameters.oEntity.toReturn = toReturn;
+                  oCall.mParameters.oEntity.toXLSX = toXLSX;
+                  break;                
               default:
                 break;
             }

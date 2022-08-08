@@ -1,0 +1,61 @@
+<mvc:View controllerName="nucleus.mainConfig.controller.PlantMass"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	 xmlns:unified="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form" displayBlock="true" height="100%" busyIndicatorDelay="0">
+	<Page backgroundDesign="Standard" contentOnlyBusy="false" enableScrolling="true" floatingFooter="false" navButtonTooltip="" showFooter="true" showHeader="true" showNavButton="false" showSubHeader="true" title="NUCLEUS" titleLevel="Auto">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="Upload" type="Accept" press="onUpload"/>
+			</OverflowToolbar>
+		</footer>
+		<content>
+			<HBox visible="{viewModel>/grupo1/vis}">
+				<VBox width="97%">
+					<Panel headerText="Nucleus Plant Creation" width="auto" class="sapUiResponsiveMargin">
+						<content>
+							<form:Form editable="true" id="__formDatGen">
+								<form:layout>
+									<form:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+								</form:layout>
+								<form:formContainers>
+									<form:FormContainer >
+										<form:formElements>
+											<form:FormElement label="Upload File">
+												<form:fields>
+													<unified:FileUploader fileType="xlsx" iconOnly="true" icon="sap-icon://attachment" uploadComplete="onHandleUploadComplete" uploadOnChange="true" uploadStart="onHandleUploadStart" change="onHandleUploadStart" class="sapUiTinyMarginEnd" busy="{datosGral>/atta}" width="100%"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="">
+												<form:fields>
+													<RadioButtonGroup >
+														<RadioButton activeHandling="true" editable="true" enabled="true" groupName="requestType" selected="{datosGral>/in14}" text="New TR Description" textAlign="Begin" textDirection="Inherit" useEntireWidth="false" valueState="None">
+														</RadioButton>
+														<RadioButton activeHandling="true" editable="true" enabled="true" groupName="requestType" selected="{datosGral>/in15}" text="Own Request" textAlign="Begin" textDirection="Inherit" useEntireWidth="false" valueState="None">
+														</RadioButton>
+													</RadioButtonGroup>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="" visible="{datosGral>/in14}">
+												<form:fields>
+													<Input id="in16" width="100%" value="{datosGral>/in16}" />
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement label="" visible="{datosGral>/in15}">
+												<form:fields>
+													<Input id="in17" width="100%" value="{datosGral>/in17}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in17')" />
+												</form:fields>
+											</form:FormElement>
+										</form:formElements>
+									</form:FormContainer>
+								</form:formContainers>
+							</form:Form>
+						</content>
+					</Panel>
+				</VBox>
+				<!-- <Button icon="sap-icon://reset" type="Transparent" press="onResetPanel($event, 'G1')" enabled="{= !${afterCreation>/followUp}}" visible="{= !${afterCreation>/followUp}}"/> -->
+			</HBox>
+		</content>
+	</Page>
+</mvc:View>

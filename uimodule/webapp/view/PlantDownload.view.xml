@@ -1,0 +1,57 @@
+<mvc:View controllerName="nucleus.mainConfig.controller.PlantDownload"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" displayBlock="true" height="100%" busyIndicatorDelay="0">
+	<Page backgroundDesign="Standard" contentOnlyBusy="false" enableScrolling="true" floatingFooter="false" navButtonTooltip="" showFooter="true" showHeader="true" showNavButton="false" showSubHeader="true" title="NUCLEUS" titleLevel="Auto">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="Download" type="Accept" press="onDownload"/>
+			</OverflowToolbar>
+		</footer>
+		<content>
+			<HBox visible="{viewModel>/grupo1/vis}">
+				<VBox width="97%">
+					<Panel headerText="Download Data" width="auto" class="sapUiResponsiveMargin">
+						<content>
+							<form:Form editable="true" id="__formDatGen">
+								<form:layout>
+									<form:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+								</form:layout>
+								<form:formContainers>
+									<form:FormContainer >
+										<form:formElements>
+											<form:FormElement label="Plant Code">
+												<form:fields>
+													<Input id="in1" width="100%" value="{datosGral>/in1}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in1')">
+														<layoutData>
+															<layout:GridData span="XL5 L5 M5 S5" />
+														</layoutData>
+													</Input>
+													<HBox justifyContent="Center">
+														<Text text="to" width="100%">
+														</Text>
+														<layoutData>
+															<layout:GridData span="XL2 L2 M2 S2" />
+														</layoutData>
+													</HBox>
+													<Input id="in2" width="100%" value="{datosGral>/in2}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in2')">
+														<layoutData>
+															<layout:GridData span="XL5 L5 M5 S5" />
+														</layoutData>
+													</Input>
+												</form:fields>
+											</form:FormElement>
+										</form:formElements>
+									</form:FormContainer>
+								</form:formContainers>
+							</form:Form>
+						</content>
+					</Panel>
+				</VBox>
+				<!-- <Button icon="sap-icon://reset" type="Transparent" press="onResetPanel($event, 'G1')" enabled="{= !${afterCreation>/followUp}}" visible="{= !${afterCreation>/followUp}}"/> -->
+			</HBox>
+		</content>
+	</Page>
+</mvc:View>

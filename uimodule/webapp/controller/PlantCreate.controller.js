@@ -404,9 +404,9 @@ sap.ui.define([
           lang: datosGral.in12,
           fabkl: datosGral.in13,
           r1: datosGral.in14 ? "X" : "",
-          des: datosGral.in14 ? datosGral.in16 : "",
+          des: datosGral.in14 ? ( datosGral.in16 || "" ) : "",
           r2: datosGral.in15 ? "X" : "",
-          own: datosGral.in15 ? datosGral.in17 : "",
+          own: datosGral.in15 ? ( datosGral.in17 || "" ) : "",
         }],
         toReturn: []
       };
