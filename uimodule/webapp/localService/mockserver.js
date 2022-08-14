@@ -183,7 +183,37 @@ sap.ui.define([
                   };
                   // oCall.mParameters.oEntity.toReturn = toReturn;
                   oCall.mParameters.oEntity.toXLSX = toXLSX;
-                  break;                
+                  break;
+                  case 'UPLOAD':
+                    // var toReturn = {
+                    //   results: [{
+                    //     "message": "&&Uploaded successfully"
+                    //   },
+                    //   {
+                    //     "message": "perro successfully",
+                    //   }]
+                    // };
+                    // oCall.mParameters.oEntity.toReturn = toReturn;
+                    // var toError = {
+                    //   results: [{
+                    //     "Msg": "&&Uploaded successfully"
+                    //   },
+                    //   {
+                    //     "Msg": "perro successfully",
+                    //     "Plant": "Plant VAL1"
+                    //   }]
+                    // };
+                    // oCall.mParameters.oEntity.toError = toError;
+                    var toOutput = {
+                      results: [{
+                        "Msg": "&&Uploaded successfully"
+                      },
+                      {
+                        "Msg": "perro successfully"
+                      }]
+                    };
+                    oCall.mParameters.oEntity.toOutput = toOutput;
+                    break;
               default:
                 break;
             }

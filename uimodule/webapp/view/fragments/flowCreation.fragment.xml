@@ -1,0 +1,26 @@
+<c:FragmentDefinition xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <Dialog id="resDialog" type="Message" contentWidth="{= ${device>/system/phone}?'100%':'50%'}" afterOpen="afterOpen">
+        <Table id="idFragTable" items="{
+					path: 'fragResData>/',
+                    templateShareable:false 
+                    }">
+            <columns>
+                <Column id="fragColumn1" hAlign="Initial" />
+                <!-- <Column id="fragColumn2" hAlign="Center" demandPopin="true" /> -->
+                <!-- <Column id="fragColumn3" hAlign="Center" demandPopin="true" minScreenWidth="400px" /> -->
+            </columns>
+            <items>
+                <ColumnListItem id="fragColumnListItem" highlight="{fragResData>state}">
+                    <cells>
+                        <HBox id="fragHbox1" alignItems="Center">
+                            <!-- <c:Icon src="{fragResData>icon}" class="sapUiSmallMarginEnd"/> -->
+                            <Text text="{fragResData>C1}" class="sapUiSmallMarginEnd"/>
+                            <!-- <Text text="{fragResData>C2}" width="100%" class="sapUiSmallMarginEnd"/> -->
+                        </HBox>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Dialog>
+</c:FragmentDefinition>

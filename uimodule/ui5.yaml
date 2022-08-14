@@ -6,6 +6,11 @@ resources:
   configuration:
     paths:
       webapp: uimodule/webapp
+builder:
+  resources:
+    excludes:
+      - "/localService/**"
+      - "/test/**"
 framework:
   name: OpenUI5
   version: 1.102.0

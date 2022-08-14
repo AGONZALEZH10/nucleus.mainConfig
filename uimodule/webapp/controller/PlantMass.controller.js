@@ -5,12 +5,16 @@ sap.ui.define([
   "./BaseController",
   "sap/ui/model/json/JSONModel",
   "sap/ui/core/Fragment",
-  "sap/m/MessageBox"
+  "sap/m/MessageBox",
+  "sap/ui/model/Filter",
+  "sap/ui/model/FilterOperator"
 ], function (
   BaseController,
   JSONModel,
   Fragment,
-  MessageBox
+  MessageBox,
+  Filter,
+  FilterOperator
 ) {
   "use strict";
 
@@ -27,11 +31,7 @@ sap.ui.define([
       }), "datosGral");
       this.datosGral = this.getModel("datosGral");
     },
-    onPageLoaded: function (oEvent) {
-      this.getTemplateHeaders().then((oHeaders) => {
-        this.oHeaders = oHeaders;
-      });
-    },
+    onPageLoaded: function (oEvent) {},
     getTemplateHeaders: function () {
       var url = "/plantActionSet";
       var that = this;
@@ -141,13 +141,13 @@ sap.ui.define([
       if (!this.oGlobalBusyDialog) {
         this.oGlobalBusyDialog = new sap.m.BusyDialog();
       }
-      this.oGlobalBusyDialog.open();
-      if (this.toMain.length > 0) {
+      if (this.toMain && this.toMain.length > 0) {
+        this.oGlobalBusyDialog.open();
         this.sendToBackForCreate(this.toMain)
           .then(function (result) {
-            setTimeout(() => {
-              this.closeView();
-            }, 2000);
+            // setTimeout(() => {
+            //   this.closeView();
+            // }, 2000);
           })
           .finally(function () {
             this.oGlobalBusyDialog.close();
@@ -155,11 +155,18 @@ sap.ui.define([
       }
     },
     sendToBackForCreate: function (arrToMain) {
+      var datosGral = this.datosGral.getData();
       var url = "/plantActionSet";
       var that = this;
       var oPayload = {
-        action: "CREATE",
-        toMain: arrToMain,
+        action: "UPLOAD",
+        toMain: arrToMain.map((item) => {
+          item.r1 = datosGral.in14 ? "X" : "";
+          item.des = (datosGral.in14 ? (datosGral.in16 || "") : "").substring(0, 30);
+          item.r2 = datosGral.in15 ? "X" : "";
+          item.own = datosGral.in15 ? (datosGral.in17 || "") : "";
+          return item;
+        }),
         toReturn: [],
         toOutput: [],
         toError: [],
@@ -167,29 +174,40 @@ sap.ui.define([
       return new Promise(function (resolve, reject) {
         that.getModel().create(url, oPayload, {
           success: function (res) {
-            if (res.toReturn.results) {
-              reject(that.displayResults(res.toReturn.results, undefined));
+            if (res.toReturn.results && res.toReturn.results.length > 0) {
+              resolve(that.displayResults(res.toReturn.results, ['message']));
             }
-            if (res.toError.results) {
-              reject(that.displayResults(res.toReturn.results, undefined));
+            if (res.toError.results && res.toError.results.length > 0) {
+              resolve(that.displayResults(res.toError.results, ['Msg']));
             }
-            if (res.toOutput.results) {
-              resolve(that.displayResults(res.toReturn.results, true));
+            if (res.toOutput.results && res.toOutput.results.length > 0) {
+              resolve(that.displayResults(res.toOutput.results, ['Plant', 'Msg']));
             }
           }
         });
       });
     },
-    displayResults: function (arrResults, okMessage) {
+    displayResults: function (arrResults, arrProperty) {
       if (arrResults.length > 0) {
         var oResults = arrResults.map((result) => {
-          return result.message;
-        }).join("\n");
-        if (okMessage) {
-          MessageBox.success(oResults);
-        } else {
-          MessageBox.error(oResults);
-        }
+          //join value of array into string
+          var value = arrProperty.map((property) => {
+            return result[property];
+          }).join(" ");
+          var okFlow = value.split("&&");
+          if (okFlow.length > 1) {
+            return {
+              C1: okFlow[0] + " " + okFlow[1],
+              state: "Success"
+            };
+          }
+          return {
+            C1: value,
+            state: "Error"
+          };
+        })
+        this.getOwnerComponent().oFlowFrag.open(oResults, "Plant Creation Results", this.getView());
+
       }
     },
     closeView: function () {
@@ -205,22 +223,29 @@ sap.ui.define([
       this.templateFile = oEvent.getParameter("files")[0];
     },
     onHandleUploadComplete: function (oEvent) {
-      this.getOwnerComponent().oXlsxUtils.readTemplate(this.templateFile, true)
-        .then(
-          (jsonObj) => {
-            // this.setTempVals(jsonObj);
-            this.toMain = this.mapToBackend(jsonObj);
-            console.log('%c', 'font-weight: bold; background-color: lightblue;font-size: large;')
-          })
-        .catch((error) => {
-          MessageBox.error(error.responseText || error.message);
+      this.getTemplateHeaders().then((oHeaders) => {
+          this.oHeaders = oHeaders;
         })
-        .finally(() => {
-          this.datosGral.setProperty("/atta", false);
+        .then(() => {
+          this.getOwnerComponent().oXlsxUtils.readTemplate(this.templateFile, true)
+            .then(
+              (jsonObj) => {
+                // this.setTempVals(jsonObj);
+                this.toMain = this.mapToBackend(jsonObj);
+                console.log('%c', 'font-weight: bold; background-color: lightblue;font-size: large;')
+              })
+            .catch((error) => {
+              MessageBox.error(error.responseText || error.message);
+            })
+            .finally(() => {
+              this.datosGral.setProperty("/atta", false);
+            });
+        })
+        .catch(() => {
+          MessageBox.error("No Headers Found");
         });
     },
     mapToBackend: function (jsonObj) {
-      var datosGral = this.datosGral.getData();
       var toMain = [];
       jsonObj.forEach((row) => {
         toMain.push({
@@ -236,14 +261,24 @@ sap.ui.define([
           code: row[this.oHeaders[9]] || "",
           country: row[this.oHeaders[10]] || "",
           lang: row[this.oHeaders[11]] || "",
-          fabkl: row[this.oHeaders[12]] || "",
-          r1: datosGral.in14 ? "X" : "",
-          des: (datosGral.in14 ? (datosGral.in16 || "") : "").substring(0, 30),
-          r2: datosGral.in15 ? "X" : "",
-          own: datosGral.in15 ? (datosGral.in17 || "") : "",
+          fabkl: row[this.oHeaders[12]] || ""
         });
       });
       return toMain;
+    },
+    handleSearch: function (evt) {
+      var param = this._oDialog.param;
+      var sValue = evt.getParameter("value");
+      var oBinding = evt.getParameter("itemsBinding");
+      var filterProperty1;
+      switch (param) {
+        case "in17":
+          filterProperty1 = [new Filter("strkorr", FilterOperator.Contains, sValue)];
+          break;
+        default:
+          break;
+      }
+      oBinding.filter(filterProperty1);
     }
   });
 });

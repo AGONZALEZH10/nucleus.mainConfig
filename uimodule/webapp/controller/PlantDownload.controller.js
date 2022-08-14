@@ -5,12 +5,16 @@ sap.ui.define([
   "./BaseController",
   "sap/ui/model/json/JSONModel",
   "sap/ui/core/Fragment",
-  "sap/m/MessageBox"
+  "sap/m/MessageBox",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
 ], function (
   BaseController,
-  JSONModel,
-  Fragment,
-  MessageBox
+	JSONModel,
+	Fragment,
+	MessageBox,
+	Filter,
+	FilterOperator
 ) {
   "use strict";
 
@@ -164,6 +168,9 @@ sap.ui.define([
             if (res.toXLSX.results && res.toXLSX.results.length > 0) {
               resolve(res.toXLSX.results);
             }
+          },
+          Error: function (err) {
+            reject(err);
           }
         });
       });
@@ -184,14 +191,40 @@ sap.ui.define([
     onDownload: function (oEvent) {
       this.sendToBackForCreate()
         .then(function (arrResults) {
+          arrResults = arrResults.map((line) => {
+            for (var key in line) {
+              if (key.includes("_metadata")) {
+                delete line[key];
+              }
+            }
+            return line;
+          });
           this.getOwnerComponent().oXlsxUtils.onDownloadAsExcel(arrResults);
         }.bind(this))
         .then(function () {
           // this.closeView();
         }.bind(this))
-        .catch(function () {
+        .catch(function (err) {
+          if (err) {
+            MessageBox.error(err);
+          }
           console.log('%c error downloading', 'font-weight: bold; background-color: lightblue;font-size: large;')
         }.bind(this));
+    },
+    handleSearch: function (evt) {
+      var param = this._oDialog.param;
+      var sValue = evt.getParameter("value");
+      var oBinding = evt.getParameter("itemsBinding");
+      var filterProperty1;
+      switch (param) {
+        case "in1":
+        case "in2":
+          filterProperty1 = [new Filter("Werks", FilterOperator.Contains, sValue)];
+          break;
+        default:
+          break;
+      }
+      oBinding.filter(filterProperty1);
     }
   });
 });

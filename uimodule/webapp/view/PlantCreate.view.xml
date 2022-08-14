@@ -64,7 +64,7 @@
 											</form:FormElement>
 											<form:FormElement label="Country">
 												<form:fields>
-													<Input id="in9" width="100%" value="{datosGral>/in9}" editable="false"/>
+													<Input id="in9" width="100%" value="{datosGral>/in9}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in9')"/>
 												</form:fields>
 											</form:FormElement>
 											<form:FormElement label="Region">
@@ -82,7 +82,7 @@
 													<Input id="in12" width="100%" value="{datosGral>/in12}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in12')"/>
 												</form:fields>
 											</form:FormElement>
-											<form:FormElement label="Factory">
+											<form:FormElement label="Factory Calender">
 												<form:fields>
 													<Input id="in13" width="100%" value="{datosGral>/in13}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in13')"/>
 												</form:fields>

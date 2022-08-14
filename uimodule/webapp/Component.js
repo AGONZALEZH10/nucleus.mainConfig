@@ -1,10 +1,10 @@
 sap.ui.define(
-  ["sap/ui/core/UIComponent", "sap/ui/Device", "nucleus/mainConfig/model/models", "./utils/XlsxUtils"],
+  ["sap/ui/core/UIComponent", "sap/ui/Device", "nucleus/mainConfig/model/models", "./utils/XlsxUtils", "./utils/FlowFrag"],
   /**
    * @param {typeof sap.ui.core.UIComponent} UIComponent
    * @param {typeof sap.ui.Device} Device
    */
-  function (UIComponent, Device, models, XlsxUtils) {
+  function (UIComponent, Device, models, XlsxUtils, FlowFrag) {
     "use strict";
 
     return UIComponent.extend("nucleus.mainConfig.Component", {
@@ -29,6 +29,9 @@ sap.ui.define(
 
         //Objeto para descargar y cargar XLSX template
         this.oXlsxUtils = new XlsxUtils(this);
+
+        //Fragmento de resultados de creacion de flujo 
+        this.oFlowFrag = new FlowFrag();
       },
     });
   }

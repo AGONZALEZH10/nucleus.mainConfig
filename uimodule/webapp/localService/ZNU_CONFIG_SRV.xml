@@ -25,6 +25,7 @@
             <EntityType Name="region" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Land1"/>
+                    <PropertyRef Name="Bland"/>
                 </Key>
                 <Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Country/Reg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Bland" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -41,6 +42,7 @@
             <EntityType Name="title" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Title"/>
+                    <PropertyRef Name="TitleMedi"/>
                 </Key>
                 <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="TitleMedi" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -61,6 +63,8 @@
             <EntityType Name="street" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="McStreet"/>
+                    <PropertyRef Name="Region"/>
+                    <PropertyRef Name="Country"/>
                 </Key>
                 <Property Name="CityName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="McStreet" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>

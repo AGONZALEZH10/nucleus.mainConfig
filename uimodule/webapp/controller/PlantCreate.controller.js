@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // @ts-nocheck
 /* eslint-disable no-console */
 /* eslint-disable no-var */
@@ -5,18 +6,22 @@ sap.ui.define([
   "./BaseController",
   "sap/ui/model/json/JSONModel",
   "sap/ui/core/Fragment",
-  "sap/m/MessageBox"
+  "sap/m/MessageBox",
+  "sap/ui/model/Filter",
+  "sap/ui/model/FilterOperator"
 ], function (
   BaseController,
   JSONModel,
   Fragment,
-  MessageBox
+  MessageBox,
+  Filter,
+  FilterOperator
 ) {
   "use strict";
 
   return BaseController.extend("nucleus.mainConfig.controller.PlantCreate", {
     onInit: function () {
-      this.initView();      
+      this.initView();
       this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
       this.oRouter.getRoute("plantCreateView").attachPatternMatched(this.onPageLoaded, this);
     },
@@ -69,6 +74,9 @@ sap.ui.define([
         case "in5":
           this.streetValueHelp();
           break;
+        case "in9":
+          this.countryValueHelp();
+          break;
         case "in10":
           this.regionValueHelp();
           break;
@@ -86,6 +94,34 @@ sap.ui.define([
       }
     },
 
+    countryValueHelp: function () {
+      var tableSelectId = this.byId('TableSelectId');
+      var tableSelectTemplate = new sap.m.ColumnListItem({
+        cells: [
+          new sap.m.Text({
+            text: "{Land1}"
+          }),
+          new sap.m.Text({
+            text: "{Landx}"
+          }),
+          new sap.m.Text({
+            text: "{Natio}"
+          })
+        ]
+      });
+      this.byId('valueHelpField1').setText('Country/Region');
+      this.byId("col2").setVisible(true);
+      this.byId('valueHelpField2').setText('Name');
+      this.byId("col3").setVisible(true);
+      this.byId('valueHelpField3').setText('Nationality');
+      this.byId("col4").setVisible(false);
+      this.byId("col5").setVisible(false);
+      this.byId("col6").setVisible(false);
+      this.byId("col7").setVisible(false);
+      this.byId("col8").setVisible(false);
+      this.byId("col9").setVisible(false);
+      tableSelectId.bindAggregation("items", "/countrySet", tableSelectTemplate);
+    },
     streetValueHelp: function () {
       var tableSelectId = this.byId('TableSelectId');
       var tableSelectTemplate = new sap.m.ColumnListItem({
@@ -331,6 +367,7 @@ sap.ui.define([
         "in1": "Werks",
         "in4": "TitleMedi",
         "in5": "McStreet",
+        "in9": "Land1",
         "in10": "Bland",
         "in12": "Spras",
         "in13": "Ident",
@@ -343,7 +380,7 @@ sap.ui.define([
       var plant = oEvent.getSource().getValue();
       this.valPlant(plant);
     },
-    valPlant: function (plant) {      
+    valPlant: function (plant) {
       var url = "/plantValPlantSet('" + plant + "')";
       // var url = "/plantValPlantSet";
       var that = this;
@@ -361,7 +398,7 @@ sap.ui.define([
     },
     valAllFields: function () {
       var datosGral = this.datosGral.getData();
-      var valFields = ["in1", "in2", "in3", "in8", "in10", "in11", "in12", "in13"];
+      var valFields = ["in1", "in2", "in3", "in8", "in9", "in10", "in11", "in12", "in13"];
       valFields.forEach((field) => {
         if (!datosGral[field]) {
           this.byId(field).setValueState(sap.ui.core.ValueState.Error);
@@ -404,9 +441,9 @@ sap.ui.define([
           lang: datosGral.in12,
           fabkl: datosGral.in13,
           r1: datosGral.in14 ? "X" : "",
-          des: datosGral.in14 ? ( datosGral.in16 || "" ) : "",
+          des: datosGral.in14 ? (datosGral.in16 || "") : "",
           r2: datosGral.in15 ? "X" : "",
-          own: datosGral.in15 ? ( datosGral.in17 || "" ) : "",
+          own: datosGral.in15 ? (datosGral.in17 || "") : "",
         }],
         toReturn: []
       };
@@ -440,6 +477,52 @@ sap.ui.define([
     closeView: function () {
       this.initView();
       this.oRouter.navTo("midOptionView");
+    },
+    handleSearch: function (evt) {
+      var param = this._oDialog.param;
+      var sValue = evt.getParameter("value");
+      var oBinding = evt.getParameter("itemsBinding");
+      var filterProperty1;
+      switch (param) {
+        case "in1":
+          filterProperty1 = [new Filter("Werks", FilterOperator.Contains, sValue)];
+          break;
+        case "in4":
+          filterProperty1 = new Filter({
+            filters: [new Filter("TitleMedi", FilterOperator.Contains, sValue)],
+            and: false
+          });
+          break;
+        case "in5":
+          filterProperty1 = [
+            new Filter("Region", FilterOperator.Contains, sValue),
+            new Filter("Country", FilterOperator.Contains, sValue),
+            new Filter("McStreet", FilterOperator.Contains, sValue)
+          ];
+          break;
+        case "in9":
+          filterProperty1 = [new Filter("Land1", FilterOperator.Contains, sValue)];
+          break;
+        case "in10":
+          filterProperty1 = [
+            new Filter("Land1", FilterOperator.Contains, sValue),
+            new Filter("Bland", FilterOperator.Contains, sValue)
+          ];
+          break;
+        case "in12":
+          filterProperty1 = [new Filter("Spras", FilterOperator.Contains, sValue)];
+          break;
+        case "in13":
+          filterProperty1 = [new Filter("Ident", FilterOperator.Contains, sValue)];
+          break;
+        case "in17":
+          filterProperty1 = [new Filter("strkorr", FilterOperator.Contains, sValue)];
+          break;
+        default:
+          break;
+      }
+      oBinding.filter(filterProperty1);
+
     }
   });
 });

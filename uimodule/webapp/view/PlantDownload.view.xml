@@ -26,7 +26,7 @@
 												<form:fields>
 													<Input id="in1" width="100%" value="{datosGral>/in1}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in1')">
 														<layoutData>
-															<layout:GridData span="XL5 L5 M5 S5" />
+															<layout:GridData span="XL3 L3 M5 S5" />
 														</layoutData>
 													</Input>
 													<HBox justifyContent="Center">
@@ -38,7 +38,7 @@
 													</HBox>
 													<Input id="in2" width="100%" value="{datosGral>/in2}" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in2')">
 														<layoutData>
-															<layout:GridData span="XL5 L5 M5 S5" />
+															<layout:GridData span="XL3 L3 M5 S5" />
 														</layoutData>
 													</Input>
 												</form:fields>

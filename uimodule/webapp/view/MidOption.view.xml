@@ -19,5 +19,10 @@
                 </content>
             </Panel>
         </content>
+        <footer>
+            <OverflowToolbar>
+                <Text text="{i18n>MidOptionView.Version}" class="version"/>
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>
