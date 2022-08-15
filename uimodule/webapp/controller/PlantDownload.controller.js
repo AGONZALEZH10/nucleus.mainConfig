@@ -159,6 +159,7 @@ sap.ui.define([
         toXLSX: [],
         toReturn: []
       };
+      this.getModel().setUseBatch(false);
       return new Promise(function (resolve, reject) {
         that.getModel().create(url, oPayload, {
           success: function (res) {

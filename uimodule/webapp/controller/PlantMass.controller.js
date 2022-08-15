@@ -39,6 +39,7 @@ sap.ui.define([
         action: "TEMPLATE",
         toXLSX: []
       };
+      this.getModel().setUseBatch(false);
       return new Promise(function (resolve, reject) {
         that.getModel().create(url, oPayload, {
           success: function (res) {
@@ -171,6 +172,7 @@ sap.ui.define([
         toOutput: [],
         toError: [],
       };
+      this.getModel().setUseBatch(false);
       return new Promise(function (resolve, reject) {
         that.getModel().create(url, oPayload, {
           success: function (res) {
@@ -183,6 +185,10 @@ sap.ui.define([
             if (res.toOutput.results && res.toOutput.results.length > 0) {
               resolve(that.displayResults(res.toOutput.results, ['Plant', 'Msg']));
             }
+          },
+          error: function (err) {
+            MessageBox.error(err.message);
+            reject(err);
           }
         });
       });

@@ -384,14 +384,19 @@ sap.ui.define([
       var url = "/plantValPlantSet('" + plant + "')";
       // var url = "/plantValPlantSet";
       var that = this;
+      this.getModel().setUseBatch(false);
       return new Promise(function (resolve, reject) {
         that.getModel().read(url, {
           success: function (oData) {
             // oData.message = ""
             if (oData.message) {
-              resolve(MessageBox.error(oData.message));
+              reject(MessageBox.error(oData.message));
             }
             resolve(true);
+          },
+          error: function (oError) {
+            MessageBox.error(oError.message);
+            reject(oError);
           }
         });
       });
@@ -413,11 +418,27 @@ sap.ui.define([
       return res;
     },
     onCreate: function (oEvent) {
+      if (!this.oGlobalBusyDialog) {
+        this.oGlobalBusyDialog = new sap.m.BusyDialog();
+      }
+      this.oGlobalBusyDialog.open();
+      setTimeout(() => {
+        this.createPlant().finally(() => {
+          this.oGlobalBusyDialog.close();
+        });
+      }, 1);
+    },
+    createPlant: function () {
       var datosGral = this.datosGral.getData();
-      this.valPlant(datosGral.in1).then(function (result) {
-        if (result && this.valAllFields()) {
-          this.sendToBackForCreate();
-        }
+      return new Promise(function (resolve, reject) {
+        this.valPlant(datosGral.in1).then(function (result) {
+            if (result && this.valAllFields()) {
+              resolve(this.sendToBackForCreate());
+            }
+          }.bind(this))
+          .catch(function (oError) {
+            reject(oError);
+          });
       }.bind(this));
     },
     sendToBackForCreate: function () {
@@ -447,6 +468,7 @@ sap.ui.define([
         }],
         toReturn: []
       };
+      this.getModel().setUseBatch(false);
       return new Promise(function (resolve, reject) {
         that.getModel().create(url, oPayload, {
           success: function (res) {
@@ -454,6 +476,10 @@ sap.ui.define([
               resolve(that.displayResults(res.toReturn.results));
             }
             resolve(true);
+          },
+          error: function (err) {
+            MessageBox.error(err.message);
+            reject(err);
           }
         });
       });
