@@ -65,6 +65,12 @@ sap.ui.define(
                     this.getRouter().navTo("appHome", {}, true /* no history*/);
                 }
             },
+            intputToUpperCase: function (oEvent) {
+                var _oInput = oEvent.getSource();
+                var val = _oInput.getValue();
+                var outVal = val.toUpperCase();
+                _oInput.setValue(outVal);
+            }
         });
     }
 );

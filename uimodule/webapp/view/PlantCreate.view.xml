@@ -29,7 +29,7 @@
 											</form:FormElement>
 											<form:FormElement label="Plant Name1">
 												<form:fields>
-													<Input id="in2" width="100%" value="{datosGral>/in2}" required="true"/>
+													<Input id="in2" width="100%" maxLength="30" value="{datosGral>/in2}" required="true"/>
 												</form:fields>
 											</form:FormElement>
 											<form:FormElement label="Plant Name2">
@@ -64,22 +64,22 @@
 											</form:FormElement>
 											<form:FormElement label="Country">
 												<form:fields>
-													<Input id="in9" width="100%" value="{datosGral>/in9}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in9')"/>
+													<Input id="in9" width="100%" value="{datosGral>/in9}" liveChange="intputToUpperCase" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in9')"/>
 												</form:fields>
 											</form:FormElement>
 											<form:FormElement label="Region">
 												<form:fields>
-													<Input id="in10" width="100%" value="{datosGral>/in10}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in10')"/>
+													<Input id="in10" width="100%" value="{datosGral>/in10}" liveChange="intputToUpperCase" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in10')"/>
 												</form:fields>
 											</form:FormElement>
 											<form:FormElement label="Postal Code">
 												<form:fields>
-													<Input id="in11" width="100%" value="{datosGral>/in11}" required="true"/>
+													<Input id="in11" width="100%" value="{datosGral>/in11}" liveChange="intputToUpperCase" required="true"/>
 												</form:fields>
 											</form:FormElement>
 											<form:FormElement label="Language">
 												<form:fields>
-													<Input id="in12" width="100%" value="{datosGral>/in12}" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in12')"/>
+													<Input id="in12" width="100%" value="{datosGral>/in12}" liveChange="intputToUpperCase" required="true" showValueHelp="true" valueHelpRequest="onValueHelp($event, 'in12')"/>
 												</form:fields>
 											</form:FormElement>
 											<form:FormElement label="Factory Calender">

@@ -434,6 +434,8 @@ sap.ui.define([
         this.valPlant(datosGral.in1).then(function (result) {
             if (result && this.valAllFields()) {
               resolve(this.sendToBackForCreate());
+            } else {
+              reject(false);
             }
           }.bind(this))
           .catch(function (oError) {
